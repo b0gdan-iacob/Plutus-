@@ -1,14 +1,48 @@
 ## !!!! Do not post your replies as comments! Clone the gist and send it to us
 
 1. List the top 3 things you do not like about Laravel
+`
+Abstracted Database Operations Can Mask Performance Issues,Laravel's Eloquent ORM simplifies database interactions, but this abstraction can sometimes mask inefficient database queries. 
+
+While Laravel provides an array of out-of-the-box features that expedite development, this richness comes at the cost of resource intensiveness. The framework can be heavier compared to leaner PHP frameworks, potentially leading to slower response times and greater resource consumption, particularly in applications where performance is critical.
+
+Laravel's high level of abstraction, aimed at simplifying development, can sometimes be a double-edged sword. This abstraction can hide important details, making it difficult for developers to understand what's going on behind the scenes. This can lead to challenges in debugging and optimizing application performance.
+`
 2. List the top 3 things you like about Laravel
+`
+Laravel's out-of-the-box support for testing with PHPUnit, including database migrations and seeding, makes it easier to adopt a test-driven development (TDD) approach. This focus on testing is often underappreciated but is crucial for building reliable and maintainable applications.
+
+Middleware for HTTP Request Handling: Laravel's middleware offers a powerful and flexible way to handle HTTP requests and responses. It allows developers to perform actions like authentication, logging, and request filtering in a clean and reusable way, which is often overlooked when considering Laravel's features.
+
+Laravel comprehensive and well-structured documentation, making it accessible. Additionally, the vibrant community provides an abundance of resources, tutorials, and forums, which greatly aids in problem-solving and learning.
+`
 3. For service providers, what is the difference between boot() and register()?
 `
  register() method is used for binding services into the service container. It's about registering services, bindings, and listeners. It is always executed before any boot() methods.
  The boot() method is used for bootstrapping services, like registering events, routes, filters, and so on. It's called after all services have been registered (register() method) and is a good place to put code that requires all other services to be already registered.
 `
 4. Present a scenario (or more) where you would create ServiceProvider for your app and NOT use those already provided by Laravel
+`
+Event and Listener Registration
+Scenario:
+For applications with a complex event-driven architecture, you might find the built-in event service provider limiting. Creating a CustomEventServiceProvider would allow you to:
+Register a large number of events and listeners in a more organized way.
+Set up specific event-related middleware or route groupings.
+Customize how events are logged or handled, beyond Laravel's default capabilities.`
+
+`Data Transformation and Reporting
+Scenario:
+If your application requires complex data transformation, analytics, or reporting features, a DataServiceProvider could be used to:
+Initialize and configure data processing libraries or services.
+Bind interfaces for various data transformers or report generators to concrete implementations.
+Register any routes, commands, or controllers that are specific to data processing and reporting tasks.
+`
 5. List some Laravel packages you have used recently and that you liked working with
+`
+laravel/passport
+spatie/laravel-permission
+alymosul/laravel-exponent-push-notifications
+`
 6. Present some techniques to organize a Laravel application as to be loosely coupled with the framework.
 `
 Implement Laravel's interfaces to decouple code from specific implementations of Laravel services.
