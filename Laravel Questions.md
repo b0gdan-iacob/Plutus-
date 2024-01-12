@@ -61,3 +61,22 @@ function getMarketplacesStatuses() {
   return $result;
 }
 ```  
+
+Used `collect` function collection from the $marketplaces array then `mapWithKeys` method is used to iterate over the items. This method passes each value to the given callback and uses the returned array's keys to associate with the values and `match` determining the status. It works similarly to a switch-case but is more concise.
+The status is merged into the $marketplace array using array_merge() then returns a collection of marketplaces with their updated statuses. 
+
+```php
+
+function getMarketplacesStatuses($marketplaces) {
+    return collect($marketplaces)->mapWithKeys(function ($marketplace) {
+        $status = match($marketplace['status']) {
+            'active' => 'active',
+            'error', 'in_progress' => 'error',
+            default => 'queue'
+        };
+        return [$marketplace['type'] => array_merge($marketplace, ['status' => $status])];
+    });
+}
+
+
+```
