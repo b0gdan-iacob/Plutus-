@@ -3,11 +3,24 @@
 1. List the top 3 things you do not like about Laravel
 2. List the top 3 things you like about Laravel
 3. For service providers, what is the difference between boot() and register()?
+`
+ register() method is used for binding services into the service container. It's about registering services, bindings, and listeners. It is always executed before any boot() methods.
+ The boot() method is used for bootstrapping services, like registering events, routes, filters, and so on. It's called after all services have been registered (register() method) and is a good place to put code that requires all other services to be already registered.
+`
 4. Present a scenario (or more) where you would create ServiceProvider for your app and NOT use those already provided by Laravel
 5. List some Laravel packages you have used recently and that you liked working with
 6. Present some techniques to organize a Laravel application as to be loosely coupled with the framework.
+`
+Implement Laravel's interfaces to decouple code from specific implementations of Laravel services.
+Use dependency injection rather than facades for easier testing and flexibility.
+Service providers for binding interfaces to implementations, which can be easily swapped.
+`
 7. Given the overhead they introduce why would you use Blade components instead of including sub-views?
-
+`
+Blade components are more reusable and maintainable, as they allow for more structured and clear hierarchies.
+They provide a better way to bind data and handle logic, making templates cleaner.
+In conclusion despite the overhead, the use of Blade components often leads to more organized, maintainable, and scalable templates compared to traditional sub-views.
+`
 # Refactor this code
 
 The purpose of the refactoring is to make the code more readable and, maybe, use features available in Laravel
