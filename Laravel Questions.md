@@ -23,6 +23,18 @@ foreach ($purchase->items as $item) {
 }
 ```
 
+Refactored the above code to be more readable $purchase->items is the collection of items, i've used `map` to loop and transform each item into either 'electronics' or 'non-electronics' type. Then with `unique` Removed any duplicates from the collection, `values` Resets the keys on the collection and aditionaly with `all()` to convert the collection back into a plain PHP array.
+```php
+
+$sections = $purchase->items
+    ->map(function ($item) {
+        return $item->product->type == 'electronics' ? 'electronics' : 'non-electronics';
+    })
+    ->unique()
+    ->values();
+
+```
+
 # Refactor this code
 ```php
 function getMarketplacesStatuses() {
